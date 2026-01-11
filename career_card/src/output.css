@@ -585,6 +585,10 @@ h1, h2, h3, h4{
 
 /* 6. 標籤：黑框黑字 */
 
+.pointer-events-none{
+  pointer-events: none;
+}
+
 .absolute{
   position: absolute;
 }
@@ -595,6 +599,18 @@ h1, h2, h3, h4{
 
 .inset-0{
   inset: 0px;
+}
+
+.left-\[-100\%\]{
+  left: -100%;
+}
+
+.top-0{
+  top: 0px;
+}
+
+.z-10{
+  z-index: 10;
 }
 
 .inline-block{
@@ -621,6 +637,10 @@ h1, h2, h3, h4{
   height: 600px;
 }
 
+.h-full{
+  height: 100%;
+}
+
 .w-full{
   width: 100%;
 }
@@ -635,6 +655,23 @@ h1, h2, h3, h4{
 
 .w-\[400px\]{
   width: 400px;
+}
+
+.w-\[60\%\]{
+  width: 60%;
+}
+
+.w-\[40\%\]{
+  width: 40%;
+}
+
+.w-\[20\%\]{
+  width: 20%;
+}
+
+.-skew-x-\[25deg\]{
+  --tw-skew-x: -25deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-pointer{
@@ -673,6 +710,10 @@ h1, h2, h3, h4{
   gap: 0.75rem;
 }
 
+.overflow-hidden{
+  overflow: hidden;
+}
+
 .rounded-xl{
   border-radius: 0.75rem;
 }
@@ -703,6 +744,44 @@ h1, h2, h3, h4{
 .bg-black{
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-white\/50{
+  background-color: rgb(255 255 255 / 0.5);
+}
+
+.bg-gradient-to-r{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-transparent{
+  --tw-gradient-from: transparent var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-white\/50{
+  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(255 255 255 / 0.5) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-white\/80{
+  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(255 255 255 / 0.8) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-white\/10{
+  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(255 255 255 / 0.1) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-white\/100{
+  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(255 255 255 / 1) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.to-transparent{
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
 }
 
 .py-\[108px\]{
