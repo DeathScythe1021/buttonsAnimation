@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+
+    <link href="./src/output.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- 在section加入 perspective（景深） -->
+    <section
+      id="card-1"
+      class="w-full h-screen py-10 flex justify-center items-center [perspective:1000px]" 
+    >
+    <!-- 卡片外面加入容器，以免卡片翻面的瞬間寬度變小，導致觸發mouseleave -->
+     <div class="trigger-box cursor-pointer relative w-[400px] h-[600px]">
+    
+      <div class="card-wrapper cursor-pointer relative w-[400px] h-[600px] [transform-style:preserve-3d]">
+        <!-- 正面 -->
+        <div
+          class="card-front absolute inset-0 bg-[#F0F0F0] flex flex-col justify-center items-center gap-[48px] py-[108px] px-[40px] border-2 border-black rounded-xl [backface-visibility:hidden]"
+        >
+          <div class="flex flex-col justify-center items-center gap-4">
+            <img src="../career_card/assets/images/Star 1.png" alt="star" />
+          </div>
+
+          
+        </div>
+        <!-- 反面 -->
+        <div class="card-back absolute inset-0 bg-[#F0F0F0] flex flex-col justify-center items-center gap-[48px] py-[108px] px-[40px] border-2 border-black rounded-xl [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-hidden">
+        <!-- 反光線條 -->
+        <div class="shine-layer absolute top-0 left-[-100%] z-10 h-full w-[20%] -skew-x-[25deg] bg-white/50 pointer-events-none"></div>
+    
+          <div class="flex flex-col justify-center items-center gap-4">
+            <img src="../career_card/assets/images/Star 1.png" alt="star" />
+
+            <h1 class="font-oxanium text-[48px] font-semibold">UI Designer</h1>
+
+            <p class="font-oxanium text-[24px] font-semibold inline-block">
+              level up!
+            </p>
+          </div>
+
+          <div class="flex flex-col justify-center items-center gap-[12px]">
+            <p>Planning Logic Flow • Wireframe • Grid System</p>
+
+            <p>Design Figma • Prototype • Mockup • Specs</p>
+
+            <p>Code HTML5 • CSS • Bootstrap 5</p>
+          </div>
+      </div>
+      </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
