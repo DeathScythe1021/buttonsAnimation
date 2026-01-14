@@ -1,3 +1,7 @@
+// CDN置入
+gsap.registerPlugin(TextPlugin);
+
+// 變數
 const circle = document.querySelector(".circle");
 
 //黑色星星按鈕動畫
