@@ -42,7 +42,7 @@
           </div>
           <!-- 2026按鈕 -->
           <div
-            class="text-container relative overflow-hidden cursor-pointer w-[200px] h-[72px] flex  justify-center items-center"
+            class="text-container relative overflow-hidden cursor-pointer w-[200px] h-[72px] flex justify-center items-center"
           >
             <h1 class="text-animation text-1 absolute text-[80px] font-oxanium">
               2026
@@ -56,10 +56,20 @@
 
         <div class="flex justify-center items-center w-full gap-[20px]">
           <!-- 括號按鈕 -->
-          <div>
-            <h1 class="font-oxanium text-[80px]">{}</h1>
-          </div>
-          <!-- 長條型按鈕 -->
+          <h1
+            class="bracket-container inline-flex items-center justify-center font-oxanium text-[80px] cursor-pointer select-none"
+          >
+            <span class="b-left">{</span>
+
+            <span
+              class="b-text w-0 overflow-hidden whitespace-nowrap opacity-0"
+            >
+              HI!
+            </span>
+
+            <span class="b-right">}</span>
+          </h1>
+          <!-- 長條形按鈕 -->
           <div
             class="w-[340px] h-[96px] bg-gradient-to-r from-[#D9D9D9] to-[#121212] rounded-full"
           ></div>
