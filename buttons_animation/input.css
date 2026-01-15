@@ -5,7 +5,7 @@
 
 @layer components {
   .text-animation{
-    @apply select-none absolute  font-oxanium text-[80px];
-    animation: text-animation 1s infinite;
+    @apply select-none  font-oxanium text-[80px];
+
   }
 }
