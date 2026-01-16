@@ -1,12 +1,11 @@
 // CDN置入
 gsap.registerPlugin(TextPlugin);
 
-// 變數
-const circle = document.querySelector(".circle");
-
 
 
 //黑色星星按鈕動畫
+const circle = document.querySelector(".circle");
+
 const blackStar = gsap.from(".black-star", {
   rotation: "+=360",
   duration: 2,
@@ -72,21 +71,46 @@ const tl2 = gsap.timeline({
   defaults: { duration: 0.5, ease: "power2.out" }
 });
 
+// 撐開空間
 tl2.to(middleText, {
   width: "auto",      // 物理撐開，推動右邊長條
-  opacity: 1,         // 文字浮現
+  opacity: 1,        
   marginLeft: "15px", // 動畫開始時才加入間距
   marginRight: "15px"
 });
 
-// 打字動畫
+// 打字效果
 tl2.to(textSplit.chars, {
-    
   opacity: 1,
-  duration: 0,  // 每個字浮現的時間 (打字通常很快)
-  stagger: 0.1,   // 每個字之間的間隔 (打字節奏)
-}, "<0.2");
+  duration: 0,  
+  stagger: 0.1,   
+}, "<0.2");//撐開空間後0.2秒後再執行
 
 // 綁定滑鼠事件
 container.addEventListener("mouseenter", () => tl2.play());
 container.addEventListener("mouseleave", () => tl2.reverse());
+
+
+// 漸層長條區塊
+const ellipseBox = document.querySelector(".ellipse-box");
+const mouseBall = document.querySelector(".mouse-ball");
+
+gsap.set(mouseBall,{xPercent: -50, yPercent: -50});
+const xTo = gsap.quickTo(mouseBall, "x", { duration: 0.2, ease: "power2.out" });
+const yTo = gsap.quickTo(mouseBall, "y", { duration: 0.2, ease: "power2.out" });
+
+ellipseBox.addEventListener("mousemove", (e) => {
+  const direction = ellipseBox.getBoundingClientRect(); // 取得容器在畫面上的位置
+  
+  // 計算：(滑鼠在視窗的 X) - (容器左邊界在視窗的 X) = 滑鼠在容器內的相對 X
+  xTo(e.clientX - direction.left);
+  yTo(e.clientY - direction.top);
+});
+
+ellipseBox.addEventListener("mouseenter",()=>{
+    gsap.to(mouseBall, {  opacity: 1, duration: 0.3, ease: "back.out(1.7)" });
+})
+ellipseBox.addEventListener("mouseleave",()=>{
+    gsap.to(mouseBall, { scale: 1, opacity: 0, duration: 0 });
+})
+
