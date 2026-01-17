@@ -33,11 +33,11 @@
           </div>
 
           <!-- 圖片按鈕 -->
-          <div class="w-[96px] h-[96px] border-2 border-black object-cover">
+          <div class="image-button overflow-hidden w-[96px] h-[96px] border-2 border-black object-cover">
             <img
               src="./assets/images/image-1.jpg"
               alt="image"
-              class="w-full h-full"
+              class="img w-full h-full"
             />
           </div>
           <!-- 2026按鈕 -->
@@ -81,12 +81,14 @@
         <div class="flex justify-center items-center w-full gap-[20px]">
           <!-- click按鈕 -->
           <div
-            class="flex justify-center items-center h-[96px] w-[228px] border-2 border-black rounded-full"
+            class="click-button overflow-hidden cursor-pointer relative flex justify-center items-center h-[96px] w-[228px] border-2 border-black rounded-full"
           >
-            <h1 class="font-oxanium text-[28px]">{click!}</h1>
+            <span class="button-fill absolute h-full w-full z-0 bottom-0 left-0 bg-black rounded-full"></span>
+            <span class="click-text font-oxanium text-[28px] z-10">{click!}</span>
           </div>
+
           <!-- 空心星星按鈕 -->
-          <div  class="drag-container -space-x-[20px] inline-flex">
+          <div class="drag-container -space-x-[20px] inline-flex">
             <img
               src="./assets/images/Star 4.svg"
               alt="stars1"
