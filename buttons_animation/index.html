@@ -86,21 +86,21 @@
             <h1 class="font-oxanium text-[28px]">{click!}</h1>
           </div>
           <!-- 空心星星按鈕 -->
-          <div class="flex -space-x-[20px]">
+          <div  class="drag-container -space-x-[20px] inline-flex">
             <img
               src="./assets/images/Star 4.svg"
-              alt="stars"
-              class="relative z-30"
+              alt="stars1"
+              class="drag-star relative z-30 cursor-grab"
             />
             <img
               src="./assets/images/Star 4.svg"
-              alt="stars"
-              class="relative z-20"
+              alt="stars2"
+              class="drag-star relative z-20 cursor-grab"
             />
             <img
               src="./assets/images/Star 4.svg"
-              alt="stars"
-              class="relative z-10"
+              alt="stars3"
+              class="drag-star relative z-10 cursor-grab"
             />
           </div>
         </div>
@@ -112,6 +112,8 @@
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/TextPlugin.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
 
     <script src="script.js"></script>
   </body>
