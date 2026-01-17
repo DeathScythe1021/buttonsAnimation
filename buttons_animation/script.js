@@ -22,6 +22,30 @@ circle.addEventListener("mouseleave", () => {
   blackStar.progress(0); //動畫時間線歸0（回到初始位置）
 });
 
+//圖片動畫
+const imageButton = document.querySelector(".image-button");
+const img = document.querySelector(".img");
+
+imageButton.addEventListener("mouseenter", () => {
+    // 圖片緩慢推進 
+    gsap.to(img, {
+        scale: 1.5,        // 放大 1.1 倍即可，太大會暈
+        duration: 0.8,     // 時間拉長，製造「呼吸感」
+        ease: "power2.out"
+    });
+    
+});
+
+imageButton.addEventListener("mouseleave", () => {
+    // 圖片緩慢推進 
+    gsap.to(img, {
+        scale: 1,        // 放大 1.1 倍即可，太大會暈
+        duration: 0.8,     // 時間拉長，製造「呼吸感」
+        ease: "power2.out"
+    });
+    
+});
+
 //數字動畫
 const split1 = new SplitType(".text-1", { types: "chars" });
 const split2 = new SplitType(".text-2", { types: "chars" });
@@ -113,7 +137,73 @@ ellipseBox.addEventListener("mouseenter",()=>{
 })
 ellipseBox.addEventListener("mouseleave",()=>{
     gsap.to(mouseBall, { scale: 1, opacity: 0, duration: 0 });
-})
+});
+
+// click按鈕
+const clickButton = document.querySelector(".click-button");
+const buttonFill = document.querySelector(".button-fill");
+const clickText = document.querySelector(".click-text");
+
+gsap.set(buttonFill,{
+    scaleY: 0, 
+    transformOrigin: "bottom center"
+});
+
+clickButton.addEventListener("mouseenter",()=>{
+    gsap.to(buttonFill,{
+        scaleY: 1, 
+        duration: 0.3, 
+        ease: "power2.out"
+    });
+    gsap.to(clickText, { 
+
+        color: "#D9D9D9", 
+        duration: 0.3,
+        ease: "power2.out"
+    });
+});
+
+clickButton.addEventListener("mouseleave", () => {
+    // 填色層縮回
+    gsap.to(buttonFill, { 
+        scaleY: 0, 
+        duration: 0.3, 
+        ease: "power2.out" 
+    });
+    
+    // 文字變回黑色
+    gsap.to(clickText, { 
+        color: "#000000", 
+        duration: 0.3,
+        ease: "power2.out"
+        
+    });
+
+});
+
+clickButton.addEventListener("click",()=>{
+    gsap.to(clickButton,{
+        scale:1.02,
+        duration:0.08,
+        ease:"back.out(1.7)",
+        yoyo: true,
+        repeat: 1
+    });
+    gsap.fromTo(clickText,
+        { letterSpacing: "0px" }, // 假設原本是 0
+        { 
+            letterSpacing: "6px", // 拉開一點點
+            duration: 0.08,        // 時間拉長
+            ease: "sine.out",   // 強一點的緩動，會有「滑行」的感覺
+            yoyo: true,
+            repeat: 1,
+            autoRound: false      // ★★★ 關鍵魔法：允許小數點運算，解決卡頓
+        }
+    );
+});
+
+
+
 
 //空心星星按鈕
 const StarContainer = document.querySelector(".drag-container");
