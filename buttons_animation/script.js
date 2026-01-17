@@ -1,5 +1,6 @@
 // CDN置入
 gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(Draggable) ;
 
 
 
@@ -114,3 +115,107 @@ ellipseBox.addEventListener("mouseleave",()=>{
     gsap.to(mouseBall, { scale: 1, opacity: 0, duration: 0 });
 })
 
+//空心星星按鈕
+const StarContainer = document.querySelector(".drag-container");
+const dragStar = StarContainer.querySelectorAll(".drag-star"); 
+const positions = []; // 先準備空白筆記本記錄位置
+
+// step1. 把「自動排版」變成「手動定位」
+// 1-1. 鎖定容器高度
+const containerRect = StarContainer.getBoundingClientRect();
+StarContainer.style.width = containerRect.width + "px"; 
+StarContainer.style.height = containerRect.height + "px";
+
+// 1-2 記錄星星原本位置
+dragStar.forEach((item, i) => {
+    positions[i] = { x: item.offsetLeft, y: item.offsetTop };
+});
+
+// 1-3 變身 Absolute，並統一定位
+dragStar.forEach((item, i) => {
+    item.style.position = "absolute";
+    item.style.top = "0px"; 
+    item.style.left = "0px"; // 關鍵優化：大家起點都設為 0
+    item.style.margin = "0"; // 拿掉 margin 避免干擾
+
+    gsap.set(item, { x: positions[i].x, y: positions[i].y });
+});
+
+// step.2 記錄位移
+Draggable.create(dragStar, {
+    type: "x,y",  
+    bounds: StarContainer, // 修正：直接使用變數 StarContainer
+    zIndexBoost: true,     // 拖曳時層級最高
+    inertia: true,         // 慣性 (若有引用的話)
+    edgeResistance: 0.65,  // 邊緣阻力
+
+    onPress: function() {
+        // 記錄：我出發時的 x, y 是多少 (這就是我的家)
+        this.startX = this.x;
+        this.startY = this.y;
+        gsap.to(this.target, {
+            scale: 1.1,      // 抓起來時放大到 1.2 倍
+            duration: 0.2,   
+            cursor: "grabbing"
+        });
+        
+        
+    },
+
+    onDragEnd: function() {
+        let targetIndex = -1;
+        const draggedElement = this.target;
+
+        // 碰撞檢測：問問看有沒有撞到別人
+
+        dragStar.forEach((item, i) => {
+            // 如果 (1) 不是我自己 且 (2) 重疊超過 30%
+            if (item !== draggedElement && this.hitTest(item, "30%")) {
+                targetIndex = i;
+            }
+        });
+
+        // 判斷結果
+        if (targetIndex !== -1) {
+            // --- 💥 撞到了！交換位置 ---
+            // 修正：items 改為 dragStar
+            const hitItem = dragStar[targetIndex];
+
+            // 1. 先讀取「對方」現在的 x, y 數值
+            const hitX = gsap.getProperty(hitItem, "x");
+            const hitY = gsap.getProperty(hitItem, "y");
+
+            // 2. 把「對方」移到「我原本的起點」
+            gsap.to(hitItem, {
+                scale: 1,
+                x: this.startX,
+                y: this.startY,
+                duration: 0.1,
+                ease: "back.out(1.7)",
+              
+            
+                
+            });
+
+            // 3. 把「我」移到「對方的位置」
+            gsap.to(draggedElement, {
+                scale: 1,
+                x: hitX,
+                y: hitY,
+                duration: 0.1,
+                ease: "back.out(1.7)",
+                
+            });
+
+        } else {
+            // --- 沒撞到，回到原處 ---
+            gsap.to(draggedElement, {
+                scale: 1,
+                x: this.startX,
+                y: this.startY,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        }
+    }
+});
